@@ -1,4 +1,4 @@
-WP Easy Ajax
+Easy Ajax
 
 Copyright 2013 by the contributors
 
