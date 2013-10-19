@@ -113,8 +113,9 @@ class Front implements FrontInterface {
 
     function js() {
         if ( isset( $GLOBALS['wp_scripts']->registered['easyajax'] ) ) return;
-        $v = @\filemtime( \EASYAJAX_URL . 'js/easyajax.js' ) ? : null;
-        wp_enqueue_script( 'easyajax', \EASYAJAX_URL . 'js/easyajax.js', array('jquery'), $v, 1 );
+		$url = 'js/easyajax.js';
+        $v = \filemtime( \EASYAJAX_PATH . $url );
+        wp_enqueue_script( 'easyajax', \EASYAJAX_URL . $url, array('jquery'), $v, 1 );
         wp_localize_script( 'easyajax', 'easy_ajax_vars', array('ajaxurl' => $this->url) );
     }
 

@@ -19,9 +19,9 @@
 		 $action = ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ? 'admin_init' : 'wp_footer';
 		 if ( did_action( $action ) ) return;
 		 if ( ! defined('EASYAJAX_URL') ) define( 'EASYAJAX_URL', plugins_url( '/', __FILE__ ) );
-		 $path = plugin_dir_path( __FILE__ ) . 'EasyAjax/';
+		 if ( ! defined('EASYAJAX_PATH') ) define( 'EASYAJAX_PATH', plugin_dir_path( __FILE__ ) );
 		 $files = array('FrontInterface', 'ProxyInterface', 'Front', 'Proxy');
-		 foreach ( $files as $file ) require_once $path . $file . '.php';
+		 foreach ( $files as $file ) require_once EASYAJAX_PATH . 'EasyAjax/' . $file . '.php';
 		 $instance = new \EasyAjax\Front( new \EasyAjax\Proxy );
 		 $instance->setup( $scope, $where, $allowed );
 	 }
