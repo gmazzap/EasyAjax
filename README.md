@@ -20,6 +20,9 @@ Easy Ajax makes ajax in WordPress ridiculously simple.
 
 ##Changelog##
 
+###0.3.0 - 10/18/2013###
+*   Refactoring, Folder rearrange, use composer
+
 ###0.2.0 - 10/18/2013###
 *   Complete refactoring
 
