@@ -1,6 +1,7 @@
 <?php
 namespace EasyAjax;
 
+
 /**
  * EasyAjax\Front class
  *
@@ -36,6 +37,13 @@ class Front implements FrontInterface {
     }
 
 
+    static function get_request( $var ) {
+        $val = \filter_input( INPUT_POST, $var, FILTER_SANITIZE_STRING );
+        if ( \is_null( $val ) ) $val = \filter_input( INPUT_GET, $var, FILTER_SANITIZE_STRING );
+        return $val;
+    }
+
+
     function __construct( Proxy $proxy ) {
         $this->proxy = $proxy;
     }
@@ -48,7 +56,7 @@ class Front implements FrontInterface {
 
     function is_valid_ajax() {
         if ( ! self::is_ajax() ) return false;
-        $action = self::get_post( 'action' );
+        $action = self::get_request( 'action' );
         $nonce = self::get_get( 'eanonce' );
         return ! empty( $action ) && \wp_verify_nonce( $nonce, __FILE__ );
     }
@@ -97,7 +105,9 @@ class Front implements FrontInterface {
     protected function url() {
         if ( ! empty( $this->url ) ) return;
         $nonce = wp_create_nonce( __FILE__ );
-        $url = \admin_url( 'admin-ajax.php' ) . '?easyajax=1&eanonce=' . $nonce;
+        $cust = \apply_filters( 'easyajax_custom_url', '' );
+        $base = \filter_var( $cust, \FILTER_VALIDATE_URL ) ? $cust : \admin_url( 'admin-ajax.php' );
+        $url = add_query_arg( array('easyajax' => '1', 'eanonce' => $nonce), $base );
         $this->url = $url;
     }
 
@@ -113,7 +123,7 @@ class Front implements FrontInterface {
 
     function js() {
         if ( isset( $GLOBALS['wp_scripts']->registered['easyajax'] ) ) return;
-		$url = 'js/easyajax.js';
+        $url = 'js/easyajax.js';
         $v = \filemtime( \EASYAJAX_PATH . $url );
         wp_enqueue_script( 'easyajax', \EASYAJAX_URL . $url, array('jquery'), $v, 1 );
         wp_localize_script( 'easyajax', 'easy_ajax_vars', array('ajaxurl' => $this->url) );
@@ -121,15 +131,17 @@ class Front implements FrontInterface {
 
 
     protected function get_action() {
-        $action = explode( '.', self::get_post( 'action' ) );
+        $action = explode( '.', self::get_request( 'action' ) );
         if ( ( $action[0] === 'priv' || $action[0] === 'nopriv' ) && \count( $action ) > 1 ) {
             $type = $action[0];
             \array_unshift( $action );
         } else {
             $type = 'both';
         }
-        return array( \implode( '.', $action ), $type );
+        return array(\implode( '.', $action ), $type);
     }
 
 
 }
+
+

@@ -1,6 +1,7 @@
 <?php
 namespace EasyAjax;
 
+
 /**
  * EasyAjax\Proxy class
  *
@@ -71,9 +72,7 @@ class Proxy implements ProxyInterface {
 
 
     protected function to_json( $out ) {
-        $json_get = (bool) Front::get_get( 'getjson' ) ? : null;
-        $json_post = (bool) Front::get_post( 'getjson' ) ? : null;
-        if ( $json_get || $json_post ) {
+        if ( (bool) Front::get_request( 'getjson' ) ) {
             \wp_send_json( $out );
             die();
         }
