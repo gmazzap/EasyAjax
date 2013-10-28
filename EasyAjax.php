@@ -27,7 +27,8 @@ if ( ! function_exists( 'easyajax' ) ) {
         $action = ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ? 'admin_init' : 'wp_footer';
         if ( did_action( $action ) ) return;
         if ( ! defined( 'EASYAJAX_URL' ) ) define( 'EASYAJAX_URL', plugins_url( '/', __FILE__ ) );
-        require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+        if ( ! class_exists( '\EasyAjax\Front' ) )
+                require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
         $instance = new \EasyAjax\Front( new \EasyAjax\Proxy );
         $instance->setup( $scope, $where, $allowed );
     }
