@@ -1,6 +1,7 @@
 <?php
 namespace EasyAjax;
 
+
 /**
  * EasyAjax\ProxyInterface interface
  *
@@ -15,8 +16,8 @@ interface ProxyInterface {
      * Prepare the output
      *
      * @param string $action the action to execute
-     * @param object $scope the object scope thea execute action if given
-     * @param string $type can be 'priv', 'nopriv' or both. Limit actions to logged in users or not
+     * @param object $scope the object scope that execute action if given
+     * @param string $type can be 'priv', 'nopriv' or 'both'. Limit actions to logged in users or not
      * @return null
      * @access public
      */
@@ -25,7 +26,7 @@ interface ProxyInterface {
 
     /**
      * Setup the callable for given action
-     * 
+     *
      * @return null
      * @access public
      */
@@ -34,7 +35,7 @@ interface ProxyInterface {
 
     /**
      * Exectute the callable, echo the result (json encoded id required) and die
-     * 
+     *
      * @return die the resut of callable call
      * @access public
      */
@@ -43,7 +44,7 @@ interface ProxyInterface {
 
     /**
      * Fire some pre/post actions hook and get the output fireng the action callable
-     * 
+     *
      * @return mixed the resul of callable
      * @access public
      */
@@ -51,3 +52,5 @@ interface ProxyInterface {
 
 
 }
+
+

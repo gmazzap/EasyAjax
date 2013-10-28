@@ -1,0 +1,16 @@
+{
+    "name": "zoomlab/easyajax",
+    "description": "Makes ajax in WordPress ridiculously simple.",
+    "authors": [
+        {
+            "name": "Giuseppe Mazzapica",
+            "email": "giuseppe.mazzapica@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-0": { "EasyAjax\\": "src/"}
+    }
+}
