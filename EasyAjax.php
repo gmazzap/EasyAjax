@@ -2,12 +2,12 @@
 /**
  * Plugin Name: Easy Ajax
  * Author: Giuseppe Mazzapica
- * Version: 0.3.0
+ * Version: 0.3.1
  * Description: Makes ajax in WordPress ridiculously simple.
  */
 /**
  * @package EasyAjax
- * @version 0.3
+ * @version 0.3.1
  */
 if ( ! defined( 'ABSPATH' ) ) die();
 
