@@ -59,7 +59,11 @@ class Proxy implements ProxyInterface {
     function get_callable() {
         $action = explode( '.', $this->action );
         if ( \count( $action ) === 2 ) {
-            $this->get_method( $action[0], $action[1] );
+            if ( $action[0]{0} === '!' ) {
+                $this->get_method( $action[0], $action[1] );
+            } else {
+                $this->new_object_metod( $action[0], $action[1] );
+            }
         } else {
             $this->get_function( $action[0] );
         }
@@ -94,6 +98,13 @@ class Proxy implements ProxyInterface {
         } elseif ( \method_exists( $class, $method ) ) {
             $this->callable = array($class, $method);
         }
+    }
+
+
+    protected function new_object_metod( $class, $method ) {
+        $class = \ltrim( $class, '!' );
+        $obj = new $class;
+        if ( \method_exists( $obj, $method ) ) $this->callable = array($obj, $method);
     }
 
 
