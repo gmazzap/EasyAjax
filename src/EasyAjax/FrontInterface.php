@@ -1,6 +1,6 @@
 <?php
-namespace EasyAjax;
 
+namespace EasyAjax;
 
 /**
  * EasyAjax\FrontInterface interface
@@ -11,26 +11,6 @@ namespace EasyAjax;
  */
 interface FrontInterface {
 
-
-    /**
-     * Constructor setup Proxy depency
-     *
-     * @param EasyAjax\Proxy $proxy
-     * @return null
-     * @access public
-     */
-    function __construct( Proxy $proxy );
-
-
-    /**
-     * Check the request for ajax
-     *
-     * @return bool true if current request an ajax request
-     * @access public
-     */
-    static function is_ajax();
-
-
     /**
      * Check the request for valid EasyAjax
      *
@@ -38,7 +18,6 @@ interface FrontInterface {
      * @access public
      */
     function is_valid_ajax();
-
 
     /**
      * Setup the EasyAjax Instance
@@ -49,8 +28,7 @@ interface FrontInterface {
      * @return null
      * @access public
      */
-    function setup( $scope = '', $where = '', $allowed = array() );
-
+    function setup( $scope = '', $where = '', $allowed = [ ] );
 
     /**
      * Check the request and launch EasyAjax\Proxy setup if required
@@ -59,8 +37,4 @@ interface FrontInterface {
      * @access public
      */
     function register();
-
-
 }
-
-
