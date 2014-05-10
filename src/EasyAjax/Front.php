@@ -103,7 +103,7 @@ class Front implements FrontInterface {
     }
 
     function js() {
-        if ( isset( $GLOBALS['wp_scripts']->registered['easyajax'] ) ) return;
+        if ( wp_script_is( 'easyajax', 'registered' ) ) return;
         $url = 'js/easyajax.js';
         $path = untrailingslashit( ABSPATH ) . wp_make_link_relative( EASYAJAX_URL );
         $v = @filemtime( $path . $url ) ? : NULL;
