@@ -1,3 +1,7 @@
+*Easy Ajax is no longer maintained, development dropped in favor of [**Tela**](https://github.com/Giuseppe-Mazzapica/Tela).*
+
+--------------
+
 Easy Ajax
 ===========
 
